@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E07B51E244CFFB600458282 /* FlashcardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07B51D244CFFB600458282 /* FlashcardsView.swift */; };
+		8E07B520244D0B4900458282 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07B51F244D0B4900458282 /* PopupViewController.swift */; };
+		8E07B522244D0BA100458282 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07B521244D0BA100458282 /* PopupView.swift */; };
+		8E2B151A245F8EDB00D438FC /* MasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B1519245F8EDB00D438FC /* MasterView.swift */; };
+		8E3F03F0245BDD5F00F07CA5 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F03EF245BDD5F00F07CA5 /* FlashcardsViewController.swift */; };
+		8E4C0938247B46D50085B66B /* NameEditTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C0937247B46D50085B66B /* NameEditTextFieldView.swift */; };
+		8E6BA9CB247ADB4F00848C0E /* VC+AddRemoveChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6BA9CA247ADB4F00848C0E /* VC+AddRemoveChild.swift */; };
+		8E6BA9CD247AFC4C00848C0E /* EditTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6BA9CC247AFC4C00848C0E /* EditTextFieldView.swift */; };
+		8E847B18245CF7E000EC0EB9 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E847B17245CF7E000EC0EB9 /* PersistenceService.swift */; };
+		8E847B1D245CFB9E00EC0EB9 /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E847B19245CFB9E00EC0EB9 /* Deck+CoreDataClass.swift */; };
+		8E847B1E245CFB9E00EC0EB9 /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E847B1A245CFB9E00EC0EB9 /* Deck+CoreDataProperties.swift */; };
+		8E847B1F245CFB9E00EC0EB9 /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E847B1B245CFB9E00EC0EB9 /* Card+CoreDataClass.swift */; };
+		8E847B20245CFB9E00EC0EB9 /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E847B1C245CFB9E00EC0EB9 /* Card+CoreDataProperties.swift */; };
+		8ED66170245B91B400F4D07A /* EditDeckPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6616F245B91B400F4D07A /* EditDeckPopupView.swift */; };
+		8ED77B73244BBBF9007A6654 /* SelectDeckPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED77B72244BBBF9007A6654 /* SelectDeckPopupView.swift */; };
 		8EF022352447A147002515B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF022342447A147002515B9 /* AppDelegate.swift */; };
 		8EF022372447A147002515B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF022362447A147002515B9 /* SceneDelegate.swift */; };
-		8EF022392447A147002515B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF022382447A147002515B9 /* ViewController.swift */; };
-		8EF0223C2447A147002515B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF0223A2447A147002515B9 /* Main.storyboard */; };
+		8EF022392447A147002515B9 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF022382447A147002515B9 /* MasterViewController.swift */; };
 		8EF0223F2447A147002515B9 /* Flashcards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0223D2447A147002515B9 /* Flashcards.xcdatamodeld */; };
 		8EF022412447A150002515B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF022402447A150002515B9 /* Assets.xcassets */; };
 		8EF022442447A150002515B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF022422447A150002515B9 /* LaunchScreen.storyboard */; };
 		8EF0224F2447A151002515B9 /* FlashcardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0224E2447A151002515B9 /* FlashcardsTests.swift */; };
 		8EF0225A2447A151002515B9 /* FlashcardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF022592447A151002515B9 /* FlashcardsUITests.swift */; };
+		8EF0226C2447D1EB002515B9 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0226B2447D1EA002515B9 /* CardModel.swift */; };
+		8EF0226E2447E01E002515B9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0226D2447E01E002515B9 /* CardView.swift */; };
+		8EF02278244B9B3D002515B9 /* DeckCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF02277244B9B3D002515B9 /* DeckCVCell.swift */; };
+		8EF0FD8024808872000F1CC1 /* PopupView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0FD7F24808872000F1CC1 /* PopupView+animations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +54,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E07B51D244CFFB600458282 /* FlashcardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsView.swift; sourceTree = "<group>"; };
+		8E07B51F244D0B4900458282 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		8E07B521244D0BA100458282 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		8E2B1519245F8EDB00D438FC /* MasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterView.swift; sourceTree = "<group>"; };
+		8E3F03EF245BDD5F00F07CA5 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
+		8E4C0937247B46D50085B66B /* NameEditTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditTextFieldView.swift; sourceTree = "<group>"; };
+		8E6BA9CA247ADB4F00848C0E /* VC+AddRemoveChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+AddRemoveChild.swift"; sourceTree = "<group>"; };
+		8E6BA9CC247AFC4C00848C0E /* EditTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextFieldView.swift; sourceTree = "<group>"; };
+		8E847B17245CF7E000EC0EB9 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		8E847B19245CFB9E00EC0EB9 /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8E847B1A245CFB9E00EC0EB9 /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8E847B1B245CFB9E00EC0EB9 /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8E847B1C245CFB9E00EC0EB9 /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8ED6616F245B91B400F4D07A /* EditDeckPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeckPopupView.swift; sourceTree = "<group>"; };
+		8ED77B72244BBBF9007A6654 /* SelectDeckPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeckPopupView.swift; sourceTree = "<group>"; };
 		8EF022312447A147002515B9 /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF022342447A147002515B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EF022362447A147002515B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8EF022382447A147002515B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8EF0223B2447A147002515B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8EF022382447A147002515B9 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		8EF0223E2447A147002515B9 /* Flashcards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flashcards.xcdatamodel; sourceTree = "<group>"; };
 		8EF022402447A150002515B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EF022432447A150002515B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +83,10 @@
 		8EF022552447A151002515B9 /* FlashcardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashcardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF022592447A151002515B9 /* FlashcardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITests.swift; sourceTree = "<group>"; };
 		8EF0225B2447A151002515B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EF0226B2447D1EA002515B9 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		8EF0226D2447E01E002515B9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8EF02277244B9B3D002515B9 /* DeckCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCVCell.swift; sourceTree = "<group>"; };
+		8EF0FD7F24808872000F1CC1 /* PopupView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopupView+animations.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +114,113 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E2B1517245E41BD00D438FC /* Accessories */ = {
+			isa = PBXGroup;
+			children = (
+				8EF022402447A150002515B9 /* Assets.xcassets */,
+				8EF0223D2447A147002515B9 /* Flashcards.xcdatamodeld */,
+				8EF022422447A150002515B9 /* LaunchScreen.storyboard */,
+			);
+			path = Accessories;
+			sourceTree = "<group>";
+		};
+		8E2B1518245E42A000D438FC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8EF022342447A147002515B9 /* AppDelegate.swift */,
+				8EF022362447A147002515B9 /* SceneDelegate.swift */,
+				8E847B17245CF7E000EC0EB9 /* PersistenceService.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8E433154245A6BF60072787E /* Flashcard Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E07B51D244CFFB600458282 /* FlashcardsView.swift */,
+				8EF0226D2447E01E002515B9 /* CardView.swift */,
+			);
+			path = "Flashcard Views";
+			sourceTree = "<group>";
+		};
+		8E433155245A6C040072787E /* Popup Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E07B521244D0BA100458282 /* PopupView.swift */,
+				8EF0FD7F24808872000F1CC1 /* PopupView+animations.swift */,
+				8E6BA9CF247AFC6B00848C0E /* Selection Popup */,
+				8E6BA9CE247AFC5700848C0E /* Edit Popup */,
+			);
+			path = "Popup Views";
+			sourceTree = "<group>";
+		};
+		8E6BA9CE247AFC5700848C0E /* Edit Popup */ = {
+			isa = PBXGroup;
+			children = (
+				8ED6616F245B91B400F4D07A /* EditDeckPopupView.swift */,
+				8E6BA9CC247AFC4C00848C0E /* EditTextFieldView.swift */,
+				8E4C0937247B46D50085B66B /* NameEditTextFieldView.swift */,
+			);
+			path = "Edit Popup";
+			sourceTree = "<group>";
+		};
+		8E6BA9CF247AFC6B00848C0E /* Selection Popup */ = {
+			isa = PBXGroup;
+			children = (
+				8ED77B72244BBBF9007A6654 /* SelectDeckPopupView.swift */,
+				8ED77B71244BB998007A6654 /* Deck Collection View */,
+			);
+			path = "Selection Popup";
+			sourceTree = "<group>";
+		};
+		8E7FFC4C244BDC5500546936 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8EF022382447A147002515B9 /* MasterViewController.swift */,
+				8E07B51F244D0B4900458282 /* PopupViewController.swift */,
+				8E3F03EF245BDD5F00F07CA5 /* FlashcardsViewController.swift */,
+				8E6BA9CA247ADB4F00848C0E /* VC+AddRemoveChild.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8E847B21245CFBA900EC0EB9 /* Core Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E847B19245CFB9E00EC0EB9 /* Deck+CoreDataClass.swift */,
+				8E847B1A245CFB9E00EC0EB9 /* Deck+CoreDataProperties.swift */,
+				8E847B1B245CFB9E00EC0EB9 /* Card+CoreDataClass.swift */,
+				8E847B1C245CFB9E00EC0EB9 /* Card+CoreDataProperties.swift */,
+			);
+			path = "Core Data Models";
+			sourceTree = "<group>";
+		};
+		8ED77B6E244BB8A7007A6654 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8EF0226B2447D1EA002515B9 /* CardModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8ED77B6F244BB8FF007A6654 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B1519245F8EDB00D438FC /* MasterView.swift */,
+				8E433154245A6BF60072787E /* Flashcard Views */,
+				8E433155245A6C040072787E /* Popup Views */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8ED77B71244BB998007A6654 /* Deck Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				8EF02277244B9B3D002515B9 /* DeckCVCell.swift */,
+			);
+			path = "Deck Collection View";
+			sourceTree = "<group>";
+		};
 		8EF022282447A147002515B9 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +244,13 @@
 		8EF022332447A147002515B9 /* Flashcards */ = {
 			isa = PBXGroup;
 			children = (
-				8EF022342447A147002515B9 /* AppDelegate.swift */,
-				8EF022362447A147002515B9 /* SceneDelegate.swift */,
-				8EF022382447A147002515B9 /* ViewController.swift */,
-				8EF0223A2447A147002515B9 /* Main.storyboard */,
-				8EF022402447A150002515B9 /* Assets.xcassets */,
-				8EF022422447A150002515B9 /* LaunchScreen.storyboard */,
+				8E2B1518245E42A000D438FC /* Helpers */,
+				8E847B21245CFBA900EC0EB9 /* Core Data Models */,
+				8E7FFC4C244BDC5500546936 /* Controllers */,
+				8ED77B6F244BB8FF007A6654 /* Views */,
+				8ED77B6E244BB8A7007A6654 /* Models */,
+				8E2B1517245E41BD00D438FC /* Accessories */,
 				8EF022452447A150002515B9 /* Info.plist */,
-				8EF0223D2447A147002515B9 /* Flashcards.xcdatamodeld */,
 			);
 			path = Flashcards;
 			sourceTree = "<group>";
@@ -141,6 +283,7 @@
 				8EF0222D2447A147002515B9 /* Sources */,
 				8EF0222E2447A147002515B9 /* Frameworks */,
 				8EF0222F2447A147002515B9 /* Resources */,
+				8E674FC6247B8845008C3DE6 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -237,7 +380,6 @@
 			files = (
 				8EF022442447A150002515B9 /* LaunchScreen.storyboard in Resources */,
 				8EF022412447A150002515B9 /* Assets.xcassets in Resources */,
-				8EF0223C2447A147002515B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +399,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8E674FC6247B8845008C3DE6 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8EF0222D2447A147002515B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF022392447A147002515B9 /* ViewController.swift in Sources */,
+				8EF022392447A147002515B9 /* MasterViewController.swift in Sources */,
+				8E847B1D245CFB9E00EC0EB9 /* Deck+CoreDataClass.swift in Sources */,
+				8E2B151A245F8EDB00D438FC /* MasterView.swift in Sources */,
+				8E3F03F0245BDD5F00F07CA5 /* FlashcardsViewController.swift in Sources */,
+				8EF0226E2447E01E002515B9 /* CardView.swift in Sources */,
+				8EF0226C2447D1EB002515B9 /* CardModel.swift in Sources */,
+				8E6BA9CD247AFC4C00848C0E /* EditTextFieldView.swift in Sources */,
+				8E07B51E244CFFB600458282 /* FlashcardsView.swift in Sources */,
+				8E07B522244D0BA100458282 /* PopupView.swift in Sources */,
+				8E4C0938247B46D50085B66B /* NameEditTextFieldView.swift in Sources */,
+				8EF0FD8024808872000F1CC1 /* PopupView+animations.swift in Sources */,
+				8ED77B73244BBBF9007A6654 /* SelectDeckPopupView.swift in Sources */,
+				8E847B18245CF7E000EC0EB9 /* PersistenceService.swift in Sources */,
 				8EF022352447A147002515B9 /* AppDelegate.swift in Sources */,
+				8E847B1E245CFB9E00EC0EB9 /* Deck+CoreDataProperties.swift in Sources */,
+				8E847B1F245CFB9E00EC0EB9 /* Card+CoreDataClass.swift in Sources */,
+				8E6BA9CB247ADB4F00848C0E /* VC+AddRemoveChild.swift in Sources */,
 				8EF0223F2447A147002515B9 /* Flashcards.xcdatamodeld in Sources */,
+				8E07B520244D0B4900458282 /* PopupViewController.swift in Sources */,
+				8EF02278244B9B3D002515B9 /* DeckCVCell.swift in Sources */,
+				8E847B20245CFB9E00EC0EB9 /* Card+CoreDataProperties.swift in Sources */,
+				8ED66170245B91B400F4D07A /* EditDeckPopupView.swift in Sources */,
 				8EF022372447A147002515B9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,14 +483,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8EF0223A2447A147002515B9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8EF0223B2447A147002515B9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8EF022422447A150002515B9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,6 +615,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2WPKASJS2;
 				INFOPLIST_FILE = Flashcards/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +634,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2WPKASJS2;
 				INFOPLIST_FILE = Flashcards/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
