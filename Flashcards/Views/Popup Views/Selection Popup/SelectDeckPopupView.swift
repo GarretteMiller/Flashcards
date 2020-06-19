@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol DeckCVCellDelegate: class {
-    func editDeck(_ deck: Deck, row: Int)
+    func editDeck(_ deck: Deck)
 }
 
 protocol SelectionDelegate: class {
@@ -80,13 +80,10 @@ class SelectDeckPopupView: UIView {
         return collectionView
     }()
 
-    weak var persistenceService: PersistenceService?
     weak var cellDelegate: DeckCVCellDelegate?
     weak var selectionDelegate: SelectionDelegate?
 
-    init(frame: CGRect, persistenceService: PersistenceService) {
-        self.persistenceService = persistenceService
-
+    override init(frame: CGRect) {
         super.init(frame: frame)
 
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -160,7 +157,7 @@ extension SelectDeckPopupView: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as? DeckCVCell
 //        cell?.cellBacking.isHidden = false
-        cellDelegate?.editDeck(decks[indexPath.row], row: indexPath.row)
+        cellDelegate?.editDeck(decks[indexPath.row])
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -172,10 +169,9 @@ extension SelectDeckPopupView: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as? DeckCVCell
         //cell?.deckName.text = decks[indexPath.row].name
         cell?.deck = decks[indexPath.row]
-        cell?.cellBacking.isHidden = true
         cell?.backgroundColor = .systemGray2
         cell?.layer.cornerRadius = 15
-        cell?.sendSubviewToBack(cell!.cellBacking)
+        cell?.contentView.layer.cornerRadius = 15
         return cell ?? DeckCVCell()
     }
 }

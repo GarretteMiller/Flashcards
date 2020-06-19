@@ -6,13 +6,12 @@
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="contains" inverseEntity="Deck"/>
     </entity>
     <entity name="Deck" representedClassName="Deck" syncable="YES">
-        <attribute name="isNew" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="contains" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
     </entity>
     <elements>
-        <element name="Card" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="Deck" positionX="-190.58984375" positionY="-144.95703125" width="128" height="103"/>
+        <element name="Card" positionX="-123.0703125" positionY="50.0234375" width="128" height="88"/>
+        <element name="Deck" positionX="-351.4921875" positionY="-130.72265625" width="128" height="88"/>
     </elements>
 </model>

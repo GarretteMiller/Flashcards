@@ -11,14 +11,6 @@ import UIKit
 
 class DeckCVCell: UICollectionViewCell {
 
-    var cellBacking: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 15
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     var deckName: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -62,14 +54,8 @@ class DeckCVCell: UICollectionViewCell {
     func setupViews() {
         addSubview(deckName)
         addSubview(deckDate)
-        addSubview(cellBacking)
 
         NSLayoutConstraint.activate([
-            cellBacking.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -5),
-            cellBacking.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -5),
-            cellBacking.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 10),
-            cellBacking.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: 10),
-
             deckName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
             deckName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             deckName.heightAnchor.constraint(equalToConstant: 30),
@@ -80,5 +66,11 @@ class DeckCVCell: UICollectionViewCell {
             deckDate.heightAnchor.constraint(equalToConstant: 30),
             deckDate.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            self.contentView.layer.borderWidth = isSelected ? 2 : 0
+        }
     }
 }

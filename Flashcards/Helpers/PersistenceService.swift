@@ -101,6 +101,14 @@ class PersistenceService {
         fetch(Deck.self).count
     }
 
+    func saveDeck(deckToSave: Deck) {
+        let decks = fetch(Deck.self)
+        let deck = decks.first { $0.objectID == deckToSave.objectID }
+        if deck != deckToSave {
+            saveContext()
+        }
+    }
+
     func createDefaultDeck() {
         let deck = Deck(context: context)
         deck.name = "New\(deckCount())"

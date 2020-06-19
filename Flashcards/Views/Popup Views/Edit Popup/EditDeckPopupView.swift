@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol EditDelegate: class {
     func didSaveDeck(deckToSave: Deck)
@@ -19,7 +20,11 @@ class EditDeckPopupView: UIView {
     var popupOffset = CGFloat()
     var bottomConstraint = NSLayoutConstraint()
     var deckData = [Card]()
-    var currentCard = 0
+    var currentDeckID: NSManagedObjectID? {
+        didSet {
+            deck = PersistenceService.shared.context.object(with: currentDeckID!) as? Deck
+        }
+    }
 
     lazy var titleBar: UIView = {
         let view = UIView()
@@ -125,12 +130,9 @@ class EditDeckPopupView: UIView {
         }
     }
 
-    weak var persistenceService: PersistenceService?
     weak var delegate: EditDelegate?
 
-    init(frame: CGRect, persistenceService: PersistenceService) {
-        self.persistenceService = persistenceService
-
+    override init(frame: CGRect) {
         super.init(frame: frame)
 
         self.popupOffset = 585
@@ -152,16 +154,12 @@ class EditDeckPopupView: UIView {
 
     @objc func saveDeck() {
         if let deck = deck {
-//            var card = Card(context: persistenceService!.context)
-//            for item in deckData {
-//                card = deck.contains.first { $0.objectID == item.objectID }!
-//                if item.frontText != card.frontText || item.backText != card.backText {
-//                    card = item
-//                }
-//            }
-//            //deck.contains = Set<Card>(deckData)
-//            persistenceService?.saveContext()
-            delegate?.didSaveDeck(deckToSave: deck)
+            for card in deck.contains {
+                let cardToSave = deckData.first { $0.objectID == card.objectID }
+                card.setValue(cardToSave?.frontText, forKey: "frontText")
+                card.setValue(cardToSave?.backText, forKey: "backText")
+            }
+            PersistenceService.shared.saveContext()
         }
     }
 

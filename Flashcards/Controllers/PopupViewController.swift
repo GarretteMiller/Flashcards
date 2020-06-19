@@ -10,8 +10,7 @@ import UIKit
 
 class PopupViewController: UIViewController, PopupDelegate {
 
-    let popupView = PopupView(frame: UIScreen.main.bounds,
-                              persistenceService: PersistenceService.shared)
+    let popupView = PopupView(frame: UIScreen.main.bounds)
 
     override func viewDidAppear(_ animated: Bool) {
         popupView.animateToStart(duration: 1)

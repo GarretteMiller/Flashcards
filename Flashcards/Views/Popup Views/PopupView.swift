@@ -29,11 +29,9 @@ protocol PopupDelegate: class {
 class PopupView: UIView, EditDelegate, SelectionDelegate {
 
     weak var delegate: PopupDelegate?
-    weak var persistenceService: PersistenceService?
     var currentState: State = .closed
     var runningAnimators = [UIViewPropertyAnimator]()
     var animationProgress = [CGFloat]()
-    var currentRow: Int = 0
 
     private lazy var safeAreaCover: UIView = {
         let view = UIView()
@@ -43,7 +41,7 @@ class PopupView: UIView, EditDelegate, SelectionDelegate {
     }()
 
     lazy var selectDeckPopupView: SelectDeckPopupView = {
-        let view = SelectDeckPopupView(frame: self.frame, persistenceService: PersistenceService.shared)
+        let view = SelectDeckPopupView(frame: self.frame)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.chevButton.addGestureRecognizer(touchArrowRecognizer)
         view.cellDelegate = self
@@ -52,23 +50,19 @@ class PopupView: UIView, EditDelegate, SelectionDelegate {
     }()
 
     lazy var editDeckPopupView: EditDeckPopupView = {
-        let view = EditDeckPopupView(frame: self.frame, persistenceService: PersistenceService.shared)
+        let view = EditDeckPopupView(frame: self.frame)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         return view
     }()
 
-    init(frame: CGRect, persistenceService: PersistenceService) {
-        self.persistenceService = persistenceService
+    override init(frame: CGRect) {
         super.init(frame: frame)
-
-        selectDeckPopupView.decks = persistenceService.fetchDecks()
-
-        print(selectDeckPopupView.decks.count)
+        selectDeckPopupView.decks = PersistenceService.shared.fetchDecks()
 
         if selectDeckPopupView.decks.isEmpty {
-            persistenceService.createDefaultDeck()
-            selectDeckPopupView.decks = persistenceService.fetchDecks()
+            PersistenceService.shared.createDefaultDeck()
+            selectDeckPopupView.decks = PersistenceService.shared.fetchDecks()
             selectDeckPopupView.deckCV.reloadData()
             editDeckPopupView.deck = selectDeckPopupView.decks.first
         }
@@ -114,8 +108,8 @@ class PopupView: UIView, EditDelegate, SelectionDelegate {
 // MARK: Core Data Actions
 
     func createDefaultDeck() {
-        persistenceService!.createDefaultDeck()
-        selectDeckPopupView.decks = persistenceService!.fetchDecks()
+        PersistenceService.shared.createDefaultDeck()
+        selectDeckPopupView.decks = PersistenceService.shared.fetchDecks()
         selectDeckPopupView.deckCV.reloadData()
         editDeckPopupView.deck = selectDeckPopupView.decks.first
     }
@@ -129,23 +123,23 @@ class PopupView: UIView, EditDelegate, SelectionDelegate {
                 card.backText = item.backText
             }
         }
-        persistenceService?.saveContext()
+        PersistenceService.shared.saveContext()
 
-        selectDeckPopupView.decks = persistenceService!.fetchDecks()
+        selectDeckPopupView.decks = PersistenceService.shared.fetchDecks()
         selectDeckPopupView.deckCV.reloadData()
         editDeckPopupView.deck = selectDeckPopupView.decks.first
     }
 
     func didAddCard() {
         let deck = editDeckPopupView.deck
-        persistenceService!.createDefaultCard(objectId: deck!.objectID)
+        PersistenceService.shared.createDefaultCard(objectId: deck!.objectID)
         editDeckPopupView.deck = deck
         editDeckPopupView.cardPicker.reloadAllComponents()
     }
 
     func didCreateNewDeck() {
-        persistenceService!.createDefaultDeck()
-        selectDeckPopupView.decks = persistenceService!.fetchDecks()
+        PersistenceService.shared.createDefaultDeck()
+        selectDeckPopupView.decks = PersistenceService.shared.fetchDecks()
         selectDeckPopupView.deckCV.reloadData()
         editDeckPopupView.deck = selectDeckPopupView.decks.first
     }
@@ -171,9 +165,8 @@ class PopupView: UIView, EditDelegate, SelectionDelegate {
 // MARK: Cell Delegate
 
 extension PopupView: DeckCVCellDelegate {
-    func editDeck(_ deck: Deck, row: Int) {
-        currentRow = row
-        editDeckPopupView.deck = deck
+    func editDeck(_ deck: Deck) {
+        editDeckPopupView.currentDeckID = deck.objectID
         editDeckPopupView.cardPicker.reloadAllComponents()
     }
 }
