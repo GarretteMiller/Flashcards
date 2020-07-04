@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MasterViewDelegate: class {
-    func didOpenPopup(_ sender: UIButton)
+    func didOpenSelection(_ sender: UIButton)
 }
 
 class MasterView: UIView {
@@ -39,9 +39,10 @@ class MasterView: UIView {
     }()
 
     private lazy var chevButton: UIButton = {
-        let chevUpImage = UIImage(systemName: "chevron.up")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        let chevUpImage = UIImage(systemName: "chevron.up.circle")?
+            .withTintColor(.black, renderingMode: .alwaysOriginal)
         let button = UIButton()
-        button.setImage(chevUpImage, for: .init())
+        button.setBackgroundImage(chevUpImage, for: .init())
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -68,7 +69,7 @@ class MasterView: UIView {
             print("delegate is nil")
             return
         }
-        delegate.didOpenPopup(sender)
+        delegate.didOpenSelection(sender)
     }
 
     private func setupViews() {
@@ -92,10 +93,10 @@ class MasterView: UIView {
             titleLabel.centerXAnchor.constraint(equalTo: titleBar.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: titleBar.centerYAnchor),
 
-            chevButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10),
+            chevButton.trailingAnchor.constraint(equalTo: titleBar.trailingAnchor, constant: -20),
             chevButton.centerYAnchor.constraint(equalTo: titleBar.centerYAnchor),
-            chevButton.widthAnchor.constraint(equalToConstant: 18),
-            chevButton.heightAnchor.constraint(equalToConstant: 18)
+            chevButton.widthAnchor.constraint(equalToConstant: 30),
+            chevButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }

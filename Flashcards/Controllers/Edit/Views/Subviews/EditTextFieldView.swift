@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol EditTextFieldDelegate: class {
+    func didMakeChangesText(changedText: String, side: Int)
+    func setRaiseTrue()
+}
+
 class EditTextFieldView: UIView, UITextFieldDelegate {
 
     private lazy var topLabel: UILabel = {
         let label = UILabel()
-        label.font  = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)
+        label.font  = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -20,18 +25,20 @@ class EditTextFieldView: UIView, UITextFieldDelegate {
 
     lazy var textField: UITextField = {
         let field = UITextField()
-        field.backgroundColor = .white
+        field.backgroundColor = .systemGray5
         field.layer.cornerRadius = 5
         field.contentVerticalAlignment = .top
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
 
+    var side: Int?
+    weak var delegate: EditTextFieldDelegate?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         textField.delegate = self
-
         setupViews()
     }
 
@@ -49,12 +56,12 @@ class EditTextFieldView: UIView, UITextFieldDelegate {
         addSubview(textField)
 
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: topAnchor),
+            textField.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 90),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            topLabel.centerXAnchor.constraint(equalTo: textField.centerXAnchor),
+            topLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
             topLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -5),
             topLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
@@ -63,5 +70,13 @@ class EditTextFieldView: UIView, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return false
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.didMakeChangesText(changedText: textField.text ?? "", side: side!)
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.setRaiseTrue()
     }
 }

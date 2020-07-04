@@ -103,8 +103,9 @@ class PersistenceService {
 
     func saveDeck(deckToSave: Deck) {
         let decks = fetch(Deck.self)
-        let deck = decks.first { $0.objectID == deckToSave.objectID }
+        var deck = decks.first { $0.objectID == deckToSave.objectID }
         if deck != deckToSave {
+            deck = deckToSave
             saveContext()
         }
     }
@@ -117,6 +118,7 @@ class PersistenceService {
         let card = Card(context: context)
         card.frontText = "front"
         card.backText = "back"
+        card.timeStamp = Date()
         deck.addToContains(card)
 
         saveContext()
@@ -125,8 +127,9 @@ class PersistenceService {
     func createDefaultCard(objectId: NSManagedObjectID) {
         let decks = fetch(Deck.self)
         let card = Card(context: context)
-        card.frontText = "front"
-        card.backText = "back"
+        card.frontText = nil
+        card.backText = nil
+        card.timeStamp = Date()
 
         decks.first { $0.objectID == objectId }?.addToContains(card)
     }

@@ -9,23 +9,52 @@
 import UIKit
 import CoreData
 
-protocol DeckCVCellDelegate: class {
-    func editDeck(_ deck: Deck)
-}
-
 protocol SelectionDelegate: class {
     func didCreateNewDeck()
+    func didCloseSelect()
+    func didTapEditDeck(deck: Deck)
+    func didTapPlayDeck(deck: Deck)
+    func didTapDeleteDeck(deck: Deck)
 }
 
-class SelectDeckPopupView: UIView {
+class SelectionView: UIView, DeckCVCellDelegate {
 
-    let addDeckImage = UIImage(systemName: "plus.circle")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
-    let chevUpImage = UIImage(systemName: "chevron.up")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-    let chevDownImage = UIImage(systemName: "chevron.down")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+    func editDeck(_ deck: Deck) {
+        animateUpDownSelect(to: currentState.next, duration: 1)
+        selectionDelegate?.didTapEditDeck(deck: deck)
+    }
+
+    func deleteDeck(_ deck: Deck) {
+        selectionDelegate?.didTapDeleteDeck(deck: deck)
+        decks.removeAll { $0.objectID == deck.objectID }
+    }
+
+    func playDeck(_ deck: Deck) {
+        animateUpDownSelect(to: currentState.next, duration: 1)
+        selectionDelegate?.didTapPlayDeck(deck: deck)
+    }
+
+    let addDeckImage = UIImage(systemName: "plus.circle")?
+        .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let chevUpImage = UIImage(systemName: "chevron.up.circle")?
+        .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let chevDownImage = UIImage(systemName: "chevron.down.circle")?
+        .withTintColor(.black, renderingMode: .alwaysOriginal)
 
     var popupOffset = CGFloat()
     var bottomConstraint = NSLayoutConstraint()
     var decks = [Deck]()
+
+    var runningAnimators = [UIViewPropertyAnimator]()
+    var animationProgress = [CGFloat]()
+    var currentState: State = .closed
+
+    private lazy var safeAreaCover: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     lazy var popup: UIView = {
         let view = UIView()
@@ -45,6 +74,7 @@ class SelectDeckPopupView: UIView {
 
     lazy var chevButton: UIButton = {
         let button = UIButton()
+        button.addGestureRecognizer(touchArrowRecognizer)
         button.setBackgroundImage(chevUpImage, for: .init())
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -80,7 +110,6 @@ class SelectDeckPopupView: UIView {
         return collectionView
     }()
 
-    weak var cellDelegate: DeckCVCellDelegate?
     weak var selectionDelegate: SelectionDelegate?
 
     override init(frame: CGRect) {
@@ -104,6 +133,7 @@ class SelectDeckPopupView: UIView {
 
     private func setupSubviews() {
         addSubview(popup)
+        addSubview(safeAreaCover)
         popup.addSubview(titleBar)
         popup.addSubview(titleLabel)
         popup.addSubview(chevButton)
@@ -113,6 +143,11 @@ class SelectDeckPopupView: UIView {
                 .constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: popupOffset)
 
         NSLayoutConstraint.activate([
+            safeAreaCover.widthAnchor.constraint(equalTo: widthAnchor),
+            safeAreaCover.leadingAnchor.constraint(equalTo: leadingAnchor),
+            safeAreaCover.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            safeAreaCover.heightAnchor.constraint(equalToConstant: 50),
+
             popup.leadingAnchor.constraint(equalTo: leadingAnchor),
             popup.trailingAnchor.constraint(equalTo: trailingAnchor),
             popup.heightAnchor.constraint(equalToConstant: 200),
@@ -136,17 +171,33 @@ class SelectDeckPopupView: UIView {
             titleLabel.centerXAnchor.constraint(equalTo: titleBar.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: titleBar.centerYAnchor),
 
-            chevButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10),
+            chevButton.trailingAnchor.constraint(equalTo: titleBar.trailingAnchor, constant: -20),
             chevButton.centerYAnchor.constraint(equalTo: titleBar.centerYAnchor),
-            chevButton.widthAnchor.constraint(equalToConstant: 18),
-            chevButton.heightAnchor.constraint(equalToConstant: 18)
+            chevButton.widthAnchor.constraint(equalToConstant: 30),
+            chevButton.heightAnchor.constraint(equalToConstant: 30)
         ])
+
+        bringSubviewToFront(safeAreaCover)
+    }
+
+    func animateToStart(duration: TimeInterval) {
+        animateUpDownSelect(to: currentState.next, duration: duration)
+    }
+
+    private lazy var touchArrowRecognizer: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(popupArrowTapped(recognizer:)))
+        return recognizer
+    }()
+
+    @objc private func popupArrowTapped(recognizer: UITapGestureRecognizer) {
+        animateUpDownSelect(to: currentState.next, duration: 1)
     }
 }
 
 // MARK: Collection View
 
-extension SelectDeckPopupView: UICollectionViewDelegate, UICollectionViewDataSource,
+extension SelectionView: UICollectionViewDelegate, UICollectionViewDataSource,
                                 UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
@@ -154,20 +205,18 @@ extension SelectDeckPopupView: UICollectionViewDelegate, UICollectionViewDataSou
         return CGSize(width: deckCV.frame.width/1.5, height: deckCV.frame.width/3)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as? DeckCVCell
-//        cell?.cellBacking.isHidden = false
-        cellDelegate?.editDeck(decks[indexPath.row])
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return decks.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        deckCV.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as? DeckCVCell
-        //cell?.deckName.text = decks[indexPath.row].name
+        cell?.cellDelegate = self
         cell?.deck = decks[indexPath.row]
         cell?.backgroundColor = .systemGray2
         cell?.layer.cornerRadius = 15

@@ -18,5 +18,6 @@ extension Card {
 
     @NSManaged public var frontText: String?
     @NSManaged public var backText: String?
+    @NSManaged public var timeStamp: Date
 
 }
